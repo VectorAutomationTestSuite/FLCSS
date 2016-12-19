@@ -1,0 +1,236 @@
+{
+  "BaseURL": "http://10.36.20.4/callcenter_enu/start.swe?",
+  "settings": [],
+  "scenarioDataTables": [
+    {
+      "stepNumber": "1",
+      "rowData": []
+    },
+    {
+      "stepNumber": "2",
+      "rowData": [
+        {
+          "UserId" : "sumitb"
+        },
+        {
+          "Password" : "burnwal"
+        }
+      ]
+    },
+    {
+      "stepNumber": "3",
+      "rowData": []
+    },
+    {
+      "stepNumber": "4",
+      "rowData": []
+    },
+    {
+      "stepNumber": "5",
+      "rowData": []
+    },
+    {
+      "stepNumber": "6",
+      "rowData": [
+        {
+          "Agency": "FL CCSS"
+        },
+        {
+          "Pin": "9876"
+        },
+        {
+          "SecurityQuestion" : "Middle name of youngest child?"
+        },
+        {
+          "SecurityAnswer" : "aaaa"
+        },
+        {
+          "Email": "swapna.patra@xerox.com"
+        },
+        {
+          "StatementFreq":"MONTHLY"
+        },
+        {
+          "LanguagePref":"ENGLISH"
+        }
+
+      ]
+    },
+    {
+      "stepNumber": "7",
+      "rowData": [
+
+      ]
+    },
+    {
+      "stepNumber": "8",
+      "rowData": [
+        {
+          "IsPrimary" : "Y"
+        },
+        {
+          "LastName" : "Maria"
+        },
+        {
+          "FirstName" : "Adams"
+        },
+        {
+          "CellPhone" : "3456278950"
+        }
+
+      ]
+    },
+    {
+      "stepNumber": "9",
+      "rowData": [
+
+      ]
+    },
+    {
+      "stepNumber": "10",
+      "rowData": [
+        {
+          "AddressType" : "MAILING"
+        },
+        {
+          "AddressLine1" : "135 HAMILTON TER"
+        },
+        {
+          "AddressLine2" : ""
+        },
+        {
+          "ZipCode" : "33414"
+        },{
+          "City" : "WEST PALM BEACH"
+        },
+        {
+          "State" : "FL"
+        },
+        {
+          "Country": "USA"
+        }
+
+      ]
+    },
+    {
+      "stepNumber": "11",
+      "rowData": []
+    },
+    {
+      "stepNumber": "12",
+      "rowData": [
+        {
+          "IsPrimary" : "Y"
+        },
+        {
+          "RebillPayType" : "CHECK"
+        }
+      ]
+    },
+    {
+      "stepNumber": "13",
+      "rowData": [
+
+      ]
+    },
+    {
+      "stepNumber": "14",
+      "rowData": [
+        {
+          "PlateNumber" : "EFDS456"
+        },
+        {
+          "PlateState" : "FL"
+        },
+        {
+          "PlateType" : "STANDARD"
+        },
+        {
+          "PlateCountry" : "USA"
+        },
+        {
+          "VehicleType" : "REGULAR"
+        },
+        {
+          "YearOfVehicle" : "2014"
+        },
+        {
+          "VehicleMake" : "FREEDOM MOTORS"
+        },
+        {
+          "VehicleModel" : "KNEELVAN"
+        }
+      ]
+    },
+    {
+      "stepNumber": "15",
+      "rowData": [
+
+      ]
+    },
+    {
+      "stepNumber": "16",
+      "rowData": [
+
+    {
+      "DeviceDescription" : "SunPass Portable"
+    },
+    {
+      "VehicleQuantity" : "2"
+    } ]
+    },
+    {
+      "stepNumber": "17",
+      "rowData": [
+
+      ]
+    },
+    {
+      "stepNumber": "18",
+      "rowData": [
+
+    {
+      "ReBillPayType" : "SAVINGS"
+    }
+  ]
+    },
+    {
+      "stepNumber": "19",
+      "rowData": [
+
+    {
+      "BankAccountNum" : "1234567890"
+    },
+    {
+      "BankRoutingNum" : "011401533"
+    },
+    {
+      "FirstName" : "fname"
+    },
+    {
+      "LastName" : "lanme"
+    },
+    {
+      "StreetAddress" : "135 HAMILTON TER"
+    },
+    {
+      "ZipCode" : "33414"
+    },
+    {
+      "City" : "West Palm Beach"
+    },
+    {
+      "State" : "FL"
+    },
+    {
+      "Country" : "USA"
+    }
+
+      ]
+    },
+    {
+      "stepNumber": "20",
+      "rowData": []
+    }
+    ]
+}
