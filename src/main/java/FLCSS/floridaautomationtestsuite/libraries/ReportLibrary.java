@@ -20,7 +20,7 @@ public class ReportLibrary {
 	public static ReportLibrary Report_Library_Instance;
 	public static String SS_Folder = null;
 	public static Boolean Error_Flag;
-	public static File Obj_directory;
+	public static File objDirecotry;
 	String path;
 	ReportLibrary()
 	{
@@ -45,15 +45,15 @@ public class ReportLibrary {
 		try {
 			if (ExtendReport_Instance == null) {
 
-				Report_Base_Path = ReportLibrary.GetPath() + "\\Report";
-				ReportLibrary.Check_Create_Directory(Report_Base_Path);
+				Report_Base_Path = ReportLibrary.getPath() + "\\Report";
+				ReportLibrary.checkCreateDirectory(Report_Base_Path);
 				Report_Suite_Path = Report_Base_Path + "\\Suite";
-				ReportLibrary.Check_Create_Directory(Report_Suite_Path);
+				ReportLibrary.checkCreateDirectory(Report_Suite_Path);
 				Report_Suite_HTML_Path = Report_Suite_Path + "\\Suite_HTML";
-				ReportLibrary.Check_Create_Directory(Report_Suite_HTML_Path);
+				ReportLibrary.checkCreateDirectory(Report_Suite_HTML_Path);
 				Report_Suite_HTMLs_Path = Report_Suite_HTML_Path + "\\Suite_HTML_" + Test_Name + "_" + FunctionLibrary.Get_Function_Instance().Get_TimeStamp();
 				Report_Suite_SS_F_Path = Report_Suite_Path + "\\Suite_SS";
-				ReportLibrary.Check_Create_Directory(Report_Suite_SS_F_Path);
+				ReportLibrary.checkCreateDirectory(Report_Suite_SS_F_Path);
 				ExtendReport_Instance = new ExtentReports(Report_Suite_HTMLs_Path + ".html", true);
 				ExtendReport_Instance.addSystemInfo("Chrome", "54.0.0").
 						addSystemInfo("Selenium Version", "2.53.1");
@@ -100,12 +100,12 @@ public class ReportLibrary {
 
 			String path=Report_Suite_SS_F_Path+"\\Screenshot\\"+ FunctionLibrary.Get_Function_Instance().Get_TimeStamp()+".png";
 			FunctionLibrary.Capture_Screen_Shot(path);
-
+			System.out.println(Description);
 			Get_Report().log(Status, StepName,Description + Get_Report().addScreenCapture(path));
 
 		}
 		else
-		{
+		{	System.out.println(Description);
 			Get_Report().log(Status, StepName, Description);
 		}
 		Test_Step_Number = Test_Step_Number + 1;
@@ -132,8 +132,8 @@ public class ReportLibrary {
 
 
 
-			File gb_Obj_directory = new File(".");
-			String Project_path = gb_Obj_directory.getCanonicalPath();
+			File gb_objDirecotry = new File(".");
+			String Project_path = gb_objDirecotry.getCanonicalPath();
 			FileWriter writer = new FileWriter(Project_path+"/Result_path.txt");
 			writer.write("");
 			String path=Report_Suite_HTMLs_Path.toString();
@@ -150,7 +150,7 @@ public class ReportLibrary {
 		}
 	}
 
-	public static void Check_Create_Directory(String Pth)
+	public static void checkCreateDirectory(String Pth)
 	{
 		File f = new File(Pth);
 		if(!f.exists())
@@ -159,10 +159,17 @@ public class ReportLibrary {
 		}
 	}
 
-	public static String GetPath() throws Exception {
-		String Bpath;
-		Obj_directory = new File(".");
-		Bpath = Obj_directory.getCanonicalPath();
+	public static String getPath() {
+		String Bpath="";
+		try {
+
+			objDirecotry = new File(".");
+			Bpath = objDirecotry.getCanonicalPath();
+		}
+		catch (Exception e)
+		{
+
+		}
 		return Bpath;
 	}
 }
