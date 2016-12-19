@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.vrds.clearsky:cs-api:0.0.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/vrds/clearsky/cs-api/0.0.2-SNAPSHOT/cs-api-0.0.2-20161030.212356-3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/vrds/clearsky/cs-api/0.0.2-SNAPSHOT/cs-api-0.0.2-20161030.212356-3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/vrds/clearsky/cs-api/0.0.2-SNAPSHOT/cs-api-0.0.2-20161030.212356-3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
