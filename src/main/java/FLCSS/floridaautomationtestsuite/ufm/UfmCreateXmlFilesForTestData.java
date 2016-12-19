@@ -1,11 +1,7 @@
 package FLCSS.floridaautomationtestsuite.ufm;
 
-/**
- * Created by 23319 on 13-12-2016.
- */
-
-import com.relevantcodes.extentreports.LogStatus;
 import FLCSS.floridaautomationtestsuite.libraries.ReportLibrary;
+import com.relevantcodes.extentreports.LogStatus;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -29,26 +25,21 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class UfmCreateXmlFilesForTestData {
+    public static String locOfInputUfmExcelFile = "";
+    public static String locOfFolderInWhichXmlToBeStored = "";
 
     public static void main(String argv[])
     {
-
-      /*  ReportLibrary.Start_Report("TC 1", "Demo");
-        ReportLibrary.End_Test();
-        ReportLibrary.End_Report();
-
-        System.out.println("Test started for Siebel account creation");
-
-        ReportLibrary.Start_Report("UFM XML files creation", "count");
-        ReportLibrary.Get_Report_Library_Instance();
-        //code for login*/
 
         System.out.println("Test started for Xml files creation for UFM");
         ReportLibrary.Start_Report("Xml files creation for UFM", "Xml files UFM");
         ReportLibrary.Get_Report_Library_Instance();
 
-        //Getting test data into a hashmap
-        HashMap<String,String> allTestCasesDataBeforeSort = getUfmTestData("C:\\Users\\23319\\Downloads\\FLCSS-java(5)\\a1\\src\\QATP_R0.xlsx");
+        //this function will get the values for the variables.
+        getUfmLocations();
+        System.out.println(ReportLibrary.getPath());
+        //Getting test data into a has]hmap
+        HashMap<String,String> allTestCasesDataBeforeSort = getUfmTestData(locOfInputUfmExcelFile);
 
         //Sorting the test case ids which are present in Hashmap(allTestCasesDataBeforeSort)
         Map<String, String> allTestCasesData = new TreeMap<String, String>(allTestCasesDataBeforeSort);
@@ -79,10 +70,11 @@ public class UfmCreateXmlFilesForTestData {
             //column name and value are keeping here in a Map(eachTestCaseData)
             for(int i =0;i<=colNamesAndValuesInfoArray.length-1;i++)
             {
-                keyName=colNamesAndValuesInfoArray[i].split(":")[0].toString();//keyname(colum name)
+                keyName=colNamesAndValuesInfoArray[i].split(":")[0].toString();//keyname(column name)
                 if(colNamesAndValuesInfoArray[i].split(":").length==2)
                 {
-                    keyValue=colNamesAndValuesInfoArray[i].split(":")[1].toString();//key  value(actual value to be passed in xml)
+                    //key  value(actual value to be passed in xml)
+                    keyValue=colNamesAndValuesInfoArray[i].split(":")[1].toString();
                 }
                 else
                 {
@@ -205,16 +197,22 @@ public class UfmCreateXmlFilesForTestData {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("C:\\Users\\23319\\Downloads\\FLCSS-java(5)\\a1\\src\\ufmXmlFiles\\"+testCaseName+".xml"));
+            ReportLibrary.checkCreateDirectory(locOfFolderInWhichXmlToBeStored+"\\ufmXmlFiles");
+
+            StreamResult result = new StreamResult(new File(locOfFolderInWhichXmlToBeStored+"\\ufmXmlFiles\\"+
+                                        testCaseName+".xml"));
             transformer.transform(source, result);
 
-            ReportLibrary.Add_Step(ReportLibrary.Test_Step_Number,"File saved. " + testCaseName + ".xml", LogStatus.PASS,false);
+            ReportLibrary.Add_Step(ReportLibrary.Test_Step_Number,"File saved. " + testCaseName + ".xml",
+                                    LogStatus.PASS,false);
 
         } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
-            ReportLibrary.Add_Step(ReportLibrary.Test_Step_Number,"Failed for test case " + testCaseName +".", LogStatus.FAIL,false);
+            ReportLibrary.Add_Step(ReportLibrary.Test_Step_Number,"Failed for test case " + testCaseName +".",
+                                    LogStatus.FAIL,false);
         } catch (TransformerException tfe) {
-            ReportLibrary.Add_Step(ReportLibrary.Test_Step_Number,"Failed for test case " + testCaseName +".", LogStatus.FAIL,false);
+            ReportLibrary.Add_Step(ReportLibrary.Test_Step_Number,"Failed for test case " + testCaseName +".",
+                                    LogStatus.FAIL,false);
             tfe.printStackTrace();
         }
 
@@ -230,7 +228,7 @@ public class UfmCreateXmlFilesForTestData {
         try
         {
             DataFormatter formatter = new DataFormatter();
-            FileInputStream file = new FileInputStream(new File("C:\\Users\\23319\\Downloads\\FLCSS-java(5)\\a1\\src\\QATP_R0.xlsx"));
+            FileInputStream file = new FileInputStream(new File(locOfInputUfmExcelFile));
 
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -246,13 +244,6 @@ public class UfmCreateXmlFilesForTestData {
             //System.out.println(noOfColumns);
             String testCaseName ="";
             String columnNamesAndValuesOfOneRow = "";
-//            HashMap<String,String> headerColumnNames = new HashMap<String,String>();
-//            //int[][] rowWithData = new int[5][];
-//            for (i = 0; i < 84; i++) {
-//                // System.out.println("hello");
-//                headerColumnNames.put(formatter.formatCellValue((rowWithColumnNames.getCell(i))),"");
-//                //  System.out.println(headerColumnNames.size());
-//            }
 
             //Iterate through each rows one by one
             Iterator<Row> rowIterator = sheet.iterator();
@@ -293,5 +284,32 @@ public class UfmCreateXmlFilesForTestData {
 
         return null;
 
+    }
+
+    /**
+     * Method to read the Ufm input excel file location and the folder location where need store the xml file
+     */
+    public static void getUfmLocations() {
+        HashMap<String, String> rowData = new HashMap<String, String>();
+        try {
+            DataFormatter formatter = new DataFormatter();
+            FileInputStream file = new FileInputStream(new File(ReportLibrary.getPath()
+                                +"\\src\\main\\java\\FLCSS\\floridaautomationtestsuite\\testdata\\Ufm_InputData.xlsx"));
+
+            //Create Workbook instance holding reference to .xlsx file
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+            //Get first/desired sheet from the workbook
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            int noOfRows = sheet.getLastRowNum();
+
+            Row rowWithColumnNames = sheet.getRow(1);
+            locOfInputUfmExcelFile = sheet.getRow(1).getCell(1).toString();
+            locOfFolderInWhichXmlToBeStored = sheet.getRow(1).getCell(2).toString();
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 }
