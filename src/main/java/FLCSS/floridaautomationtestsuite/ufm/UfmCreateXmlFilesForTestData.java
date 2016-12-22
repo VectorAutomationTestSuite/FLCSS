@@ -131,6 +131,7 @@ public class UfmCreateXmlFilesForTestData {
             doc.appendChild(soapEnvelope);
 
             // adding attributes
+// adding attributes
             soapEnvelope.setAttribute("xmlns:soapenv", "http://schemas.xmlsoap.org/soap/envelope/");
             soapEnvelope.setAttribute("xmlns:del", "http://deliver.outbound.ufm.sodh.fte.com/");
 
@@ -146,16 +147,16 @@ public class UfmCreateXmlFilesForTestData {
 
             // ufm elements
             createChildElement(doc,ufm,"UFMID",testData.get("UFM ID").toString());
-            createChildElement(doc,ufm,"TipUfmSequence",testData.get("UFM ID").toString());////////////
+            createChildElement(doc,ufm,"TipUfmSequence",testData.get("TipUfmSequence").toString());
             createChildElement(doc,ufm,"LaneUFMType",testData.get("Lane UFM Type").toString());
             createChildElement(doc,ufm,"CalClass",testData.get("CalClass").toString());
             createChildElement(doc,ufm,"TimeStamp",testData.get("TxnTm").toString());
             createChildElement(doc,ufm,"PlazaID",testData.get("PlazaId").toString());
             createChildElement(doc,ufm,"LaneID",testData.get("LaneId").toString());
-            createChildElement(doc,ufm,"PayMethod",testData.get("PlazaId").toString());/////
+            createChildElement(doc,ufm,"PayMethod",testData.get("PayMethod").toString());
             createChildElement(doc,ufm,"LaneMode",testData.get("Lane Mode").toString());
             createChildElement(doc,ufm,"LaneStatusState",testData.get("Lane Status").toString());
-            createChildElement(doc,ufm,"ExceptionsCodes","101");/////
+            createChildElement(doc,ufm,"ExceptionsCodes",testData.get("Exception Code").toString());
 
             Element previousInfo= createChildElement(doc,ufm,"PreviousInfo","");
             createChildElement(doc,previousInfo,"PreviousPlazaID",testData.get("PrevPlzId").toString());
@@ -183,15 +184,15 @@ public class UfmCreateXmlFilesForTestData {
             createChildElement(doc,ufm,"FullFareRevenue",testData.get("FulFareRev").toString());
             createChildElement(doc,ufm,"EtcFareRevenue",testData.get("ETCRev").toString());
             createChildElement(doc,ufm,"IndicatedRevenue",testData.get("IndRev").toString());
-            createChildElement(doc,ufm,"ActualRevenueCollected",testData.get("TpdrStat").toString());////
+            createChildElement(doc,ufm,"ActualRevenueCollected",testData.get("ActRev").toString());
             createChildElement(doc,ufm,"AccountID",testData.get("Account ID").toString());
-            createChildElement(doc,ufm,"TipAdjusted",testData.get("TIP Adjusted").toString());///////
+            createChildElement(doc,ufm,"TipAdjusted",testData.get("TIP Adjusted").toString());
 
             Element tripInfo= createChildElement(doc,ufm,"TripInfo","");
 
             createChildElement(doc,tripInfo,"TripId",testData.get("Trip ID").toString());
-            createChildElement(doc,tripInfo,"TripAssociationType",testData.get("TpdrStat").toString());//////////
-            createChildElement(doc,ufm,"RevenueType",testData.get("TpdrStat").toString());///
+            createChildElement(doc,tripInfo,"TripAssociationType",testData.get("TripAssociationType").toString());
+            createChildElement(doc,ufm,"RevenueType",testData.get("Revenue Type").toString());
 
             // write the content into xml file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
